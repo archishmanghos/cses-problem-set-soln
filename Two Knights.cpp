@@ -13,24 +13,15 @@ int32_t main()
 	cin.tie(NULL);
 	/*ifstream cin("input.txt");
 	ofstream cout("output.txt");*/
-	int n;
+	ll n;
 	cin >> n;
-	int a[n];
-	map<int, int> mp;
-	for (int i = 1; i <= n - 1; i++)
+	for (ll i = 1; i <= n; i++)
 	{
-		cin >> a[i];
-		++mp[a[i]];
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		if (!mp[i])
-		{
-			cout << i;
-			return 0;
-		}
+		ll a = i * i * (i * i - 1) / 2;
+		ll b = 2 * (i - 2) * (2 * (i - 4) + 6);
+		cout << a - b << "\n";
 	}
 	return 0;
 }
-//30-07-2020 23:54:25
+//31-07-2020 00:02:15
 //------------------------------------------------------------------------------

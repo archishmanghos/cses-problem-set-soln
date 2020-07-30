@@ -13,24 +13,23 @@ int32_t main()
 	cin.tie(NULL);
 	/*ifstream cin("input.txt");
 	ofstream cout("output.txt");*/
-	int n;
+	ll n;
 	cin >> n;
-	int a[n];
-	map<int, int> mp;
-	for (int i = 1; i <= n - 1; i++)
+	if (n > 1 && n < 4)
 	{
-		cin >> a[i];
-		++mp[a[i]];
+		cout << "NO SOLUTION";
+		return 0;
 	}
-	for (int i = 1; i <= n; i++)
+	if (n == 4)
 	{
-		if (!mp[i])
-		{
-			cout << i;
-			return 0;
-		}
+		cout << "3 1 4 2";
+		return 0;
 	}
+	for (ll i = 1; i <= n; i += 2)
+		cout << i << " ";
+	for (int i = 2; i <= n; i += 2)
+		cout << i << " ";
 	return 0;
 }
-//30-07-2020 23:54:25
+//30-07-2020 23:59:08
 //------------------------------------------------------------------------------

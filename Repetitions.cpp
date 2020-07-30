@@ -13,24 +13,22 @@ int32_t main()
 	cin.tie(NULL);
 	/*ifstream cin("input.txt");
 	ofstream cout("output.txt");*/
-	int n;
-	cin >> n;
-	int a[n];
-	map<int, int> mp;
-	for (int i = 1; i <= n - 1; i++)
+	string s;
+	cin >> s;
+	int ans = 0, cnt = 1;
+	for (int i = 1; i < s.size(); i++)
 	{
-		cin >> a[i];
-		++mp[a[i]];
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		if (!mp[i])
+		if (s[i] == s[i - 1])
+			++cnt;
+		else
 		{
-			cout << i;
-			return 0;
+			ans = max(ans, cnt);
+			cnt = 1;
 		}
 	}
+	ans = max(ans, cnt);
+	cout << ans;
 	return 0;
 }
-//30-07-2020 23:54:25
+//30-07-2020 23:56:24
 //------------------------------------------------------------------------------
