@@ -1,34 +1,77 @@
-//Practice
 #include <bits/stdc++.h>
-#define ll long long
+#define int long long
 using namespace std;
-const ll N = 1e5 + 5;
-const double E = 1e-9;
+const int mxN = 1e6 + 5;
+const int INF = 1e18 + 7;
  
-//------------------------------------------------------------------------------
+#ifndef ONLINE_JUDGE
+#define debug(x) cerr << #x <<" "; _print(x); cerr << endl;
+#else
+#define debug(x)
+#endif
+ 
+#ifndef ONLINE_JUDGE
+#define debugarr(x,i,j) cerr << #x <<" "; _print(x,i,j); cerr << endl;
+#else
+#define debugarr(x)
+#endif
+ 
+void _print(int t){cerr << t;}
+void _print(string t){cerr << t;}
+void _print(bool t){cerr << t;}
+void _print(char t){cerr << t;}
+void _print(long double t){cerr << t;}
+void _print(double t){cerr << t;}
+void _print(unsigned long long t){cerr << t;}
+template <class T> void _print(T arr[], int i, int j){cerr << "[ " ;for ( int k = i; k <= j; k++) cerr << arr[k] << ", " ;cerr << "]\n";}
+template <class T, class V> void _print(pair <T, V> p);
+template <class T> void _print(vector <T> v);
+template <class T> void _print(set <T> v);
+template <class T, class V> void _print(map <T, V> v);
+template <class T> void _print(multiset <T> v);
+template <class T, class V> void _print(pair <T, V> p){cerr << "{";_print(p.ff);cerr << ",";_print(p.ss);cerr << "}";}
+template <class T> void _print(vector <T> v){cerr << "[ ";for (T i : v){_print(i);cerr << " ";}cerr << "]";}
+template <class T> void _print(set <T> v){cerr << "[ ";for (T i : v){_print(i);cerr << " ";}cerr << "]";}
+template <class T> void _print(multiset <T> v){cerr << "[ ";for (T i : v){_print(i);cerr << " ";}cerr << "]";}
+template <class T, class V> void _print(map <T, V> v){cerr << "[ ";for (auto i : v){_print(i);cerr << " ";}cerr << "]";}
+ 
+int N, X, A[105];
+int cache[mxN];
+ 
+int dp(int target)
+{
+	if(target <= 0)
+		return 0;
+	if(cache[target] != -1)
+		return cache[target];
+ 
+	int ans = INF;
+	for(int i = 1; i <= N; i++)
+	{
+		if(target >= A[i])
+			ans = min(ans, dp(target - A[i]) + 1);
+	}
+ 
+	return cache[target] = ans;
+}
+ 
 int32_t main()
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	/*ifstream cin("input.txt");
-	ofstream cout("output.txt");*/
-	ll n, x;
-	cin >> n >> x;
-	vector<ll> coins(n), ans(x + 1, x + 1);
-	ans[0]=0;
-	for (ll i = 0; i < n; i++)
-		cin >> coins[i];
-	for (int i = 0; i < n; i++) 
-		cin >> coins[i];
-	for (int i = 1; i <= x; i++)
-		for (int j = 0; j < n; j++)
-			if (coins[j] <= i)
-				ans[i] = min(ans[i], ans[i - coins[j]] + 1);
-	if (ans[x] == x+1)
-		cout << -1;
-	else
-		cout << ans[x];
-	return 0;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+ 
+	#ifndef ONLINE_JUDGE
+	    freopen("error.txt", "w", stderr);
+	#endif
+ 
+	cin >> N >> X;
+	for(int i = 1; i <= N; i++)
+		cin >> A[i];
+ 
+	memset(cache, -1, sizeof(cache));
+	int ans = dp(X);
+
+	cout << (ans == INF ? -1 : ans);
+ 
+    return 0;
 }
-//01-08-2020 12:57:28
-//------------------------------------------------------------------------------
