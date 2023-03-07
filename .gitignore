@@ -1,0 +1,9 @@
+*.exe
+*.txt
+*.in
+*.zip
+testing.cpp
+OR-chi.cpp
+carbon.png
+!*.cpp
+!*.md
